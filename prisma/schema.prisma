@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Therapist {
+  id          String    @id @default(uuid())
+  name        String
+  role        String    // 例: 柔道整復師, 鍼灸師, 整体師
+  description String
+  clinicName  String?
+  address     String?
+  imageUrl    String?
+  url         String?   // 予約や詳細ページのURL
+  symptoms    Symptom[] // 対応可能な不調（多対多）
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Symptom {
+  id         String      @id @default(uuid())
+  name       String      @unique // 例: 肩こり, 腰痛, 眼精疲労
+  category   String?     // 例: 頭・首, 肩・背中, 腰・足, その他
+  therapists Therapist[] // 対応できるセラピスト（多対多）
+}

@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbfbf9;
+  --foreground: #2c3e38;
+  --primary: #4b6a62;
+  --primary-light: #769a90;
+  --accent: #e07a5f;
+  --accent-light: #e89b87;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --font-sans: var(--font-noto-sans-jp), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
