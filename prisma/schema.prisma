@@ -20,6 +20,7 @@ model Therapist {
   imageUrl    String?
   url         String?   // 予約や詳細ページのURL
   symptoms    Symptom[] // 対応可能な不調（多対多）
+  reservations Reservation[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
@@ -30,3 +31,19 @@ model Symptom {
   category   String?     // 例: 頭・首, 肩・背中, 腰・足, その他
   therapists Therapist[] // 対応できるセラピスト（多対多）
 }
+
+model Reservation {
+  id          String   @id @default(uuid())
+  therapistId String
+  therapist   Therapist @relation(fields: [therapistId], references: [id])
+  userName    String
+  userEmail   String
+  userPhone   String
+  date        DateTime
+  timeSlot    String
+  status      String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+

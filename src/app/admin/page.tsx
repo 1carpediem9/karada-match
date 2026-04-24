@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { Plus, Edit, User, ExternalLink } from "lucide-react";
+import { Plus, Edit, User, ExternalLink, Calendar } from "lucide-react";
 import DeleteButton from "@/components/admin/DeleteButton";
 
 export default async function AdminDashboard() {
@@ -22,13 +22,22 @@ export default async function AdminDashboard() {
             <h1 className="text-3xl font-bold text-foreground">管理者ダッシュボード</h1>
             <p className="text-zinc-500 mt-1">セラピスト情報の管理・編集が行えます</p>
           </div>
-          <Link
-            href="/admin/therapists/new"
-            className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-primary-light transition-all"
-          >
-            <Plus className="w-5 h-5" />
-            新規セラピスト登録
-          </Link>
+          <div className="flex flex-wrap gap-4">
+            <Link
+              href="/admin/reservations"
+              className="inline-flex items-center gap-2 bg-white border border-zinc-200 text-zinc-600 px-6 py-3 rounded-xl font-bold hover:bg-zinc-50 transition-all"
+            >
+              <Calendar className="w-5 h-5" />
+              予約一覧を表示
+            </Link>
+            <Link
+              href="/admin/therapists/new"
+              className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-primary-light transition-all"
+            >
+              <Plus className="w-5 h-5" />
+              新規セラピスト登録
+            </Link>
+          </div>
         </div>
 
         <div className="bg-white rounded-3xl shadow-sm border border-zinc-100 overflow-hidden">

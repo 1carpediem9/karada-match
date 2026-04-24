@@ -125,13 +125,16 @@ export default async function TherapistDetailPage({ params }: Props) {
             </section>
 
             {/* CTA */}
-            <div className="pt-6 flex justify-center">
-              <button className="group flex h-14 w-full md:w-auto md:min-w-[320px] items-center justify-center gap-2 rounded-full bg-primary px-8 text-lg font-bold text-white shadow-lg hover:bg-primary-light transition-all hover:-translate-y-1">
-                <ExternalLink className="w-5 h-5" />
+            <div className="pt-6 flex justify-center relative">
+              <a 
+                href={`/therapists/${id}/reserve`}
+                className="group relative z-50 flex h-14 w-full md:w-auto md:min-w-[320px] items-center justify-center gap-2 rounded-full bg-primary px-8 text-lg font-bold text-white shadow-lg hover:bg-primary-light transition-all hover:-translate-y-1 cursor-pointer pointer-events-auto"
+              >
+                <CalendarDays className="w-5 h-5" />
                 <span>予約ページへ進む</span>
-              </button>
+              </a>
             </div>
-            <p className="text-center text-xs text-zinc-400">※MVP版のため、実際の予約機能は接続されていません。</p>
+            <p className="text-center text-xs text-zinc-400 mt-4">※セラピストに直接メッセージが届きます。</p>
           </div>
         </div>
       </div>
