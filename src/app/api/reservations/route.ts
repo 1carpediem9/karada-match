@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { sendReservationNotification } from "@/lib/mail";
 
 export async function POST(request: Request) {
   try {
@@ -24,7 +25,13 @@ export async function POST(request: Request) {
         notes,
         status: "PENDING",
       },
+      include: {
+        therapist: true,
+      },
     });
+
+    // 通知を送信
+    await sendReservationNotification(reservation, reservation.therapist.name);
 
     return NextResponse.json(reservation, { status: 201 });
   } catch (error) {
